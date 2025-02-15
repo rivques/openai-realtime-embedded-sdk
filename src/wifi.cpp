@@ -43,6 +43,7 @@ void oai_wifi(void) {
   ESP_ERROR_CHECK(esp_wifi_start());
 
   ESP_LOGI(LOG_TAG, "Connecting to WiFi SSID: %s", WIFI_SSID);
+  ESP_LOGI(LOG_TAG, "Connecting to WiFi PASSWORD: %s", WIFI_PASSWORD);
   wifi_config_t wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strncpy((char *)wifi_config.sta.ssid, (char *)WIFI_SSID,

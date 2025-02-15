@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 3.19)
 
+file(READ ${CMAKE_SOURCE_DIR}/.env ENV_FILE_CONTENTS)
+string(REGEX REPLACE "\n" ";" ENV_LINES "${ENV_FILE_CONTENTS}")
+
+foreach(line ${ENV_LINES})
+    string(REGEX MATCH "([^=]+)=(.*)" _ ${line})
+    if(CMAKE_MATCH_1 AND CMAKE_MATCH_2)
+        set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
+    endif()
+endforeach()
+
 if(NOT IDF_TARGET STREQUAL linux)
   if(NOT DEFINED ENV{WIFI_SSID} OR NOT DEFINED ENV{WIFI_PASSWORD})
     message(FATAL_ERROR "Env variables WIFI_SSID and WIFI_PASSWORD must be set")
