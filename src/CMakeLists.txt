@@ -6,7 +6,7 @@ if(IDF_TARGET STREQUAL linux)
 		REQUIRES peer esp-libopus esp_http_client)
 else()
 	idf_component_register(
-		SRCS ${COMMON_SRC} "wifi.cpp" "media.cpp"
+		SRCS ${COMMON_SRC} "wifi.cpp" "media.cpp" "lcd_7x5.c" "time_mgmt.c" "pixeboy_16.c" "pixeboy_20.c" "pixeboy_32.c" "pixeboy_60.c" "bat.c" "display_handler.c"
 		REQUIRES driver esp_wifi nvs_flash peer esp_psram esp-libopus esp_http_client)
 endif()
 
